@@ -1,1 +1,1 @@
-TigerBot is general-purpose AI chatbot, developed by Tiger Research.
+TigerBot is a general-purpose AI chatbot, developed by Tiger Research.
