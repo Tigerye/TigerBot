@@ -1,0 +1,15 @@
+jtype: Flow
+version: '1'
+with:
+  port: 61002
+executors:
+  - name: gpt
+    uses:
+      jtype: Llama4bit
+      metas:
+        py_modules:
+          - excutors/llama_4bit.py
+    uses_with:
+      model_path_or_name: '/models/llama_4bit'
+      max_generate_length: 1024
+      device: 'cuda'
