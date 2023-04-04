@@ -1,0 +1,15 @@
+jtype: Flow
+version: '1'
+with:
+  port: 61000
+executors:
+  - name: bloom
+    uses:
+      jtype: Bloom
+      metas:
+        py_modules:
+          - excutors/bloom.py
+    uses_with:
+      model_path_or_name: '/models/bloom'
+      max_generate_length: 1024
+      device: 'cuda'

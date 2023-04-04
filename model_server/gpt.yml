@@ -1,0 +1,15 @@
+jtype: Flow
+version: '1'
+with:
+  port: 61001
+executors:
+  - name: gpt
+    uses:
+      jtype: QAGPT
+      metas:
+        py_modules:
+          - excutors/gpt.py
+    uses_with:
+      model_path_or_name: '/models/gpt'
+      max_generate_length: 1024
+      device: 'cuda'
