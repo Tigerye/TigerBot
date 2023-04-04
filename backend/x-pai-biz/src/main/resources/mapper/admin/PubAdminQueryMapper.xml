@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tigerobo.x.pai.dal.admin.mapper.PubAdminQueryMapper">
+
+    <sql id="condition_query">
+        <if test="req.getId!=null and req.id>0">
+            and b.id = #{req.id}
+        </if>
+        <if test="req.startCreateTime !=null">
+            and b.create_time &gt;= #{req.startCreateTime}
+        </if>
+        <if test="req.endCreateTime !=null">
+            and b.create_time &lt;=  #{req.endCreateTime}
+        </if>
+        <if test="req.startUpdateTime !=null">
+            and b.update_time &gt;= #{req.startUpdateTime}
+        </if>
+        <if test="req.endUpdateTime !=null">
+            and b.update_time  &lt;=  #{req.endUpdateTime}
+        </if>
+        <if test="req.vip !=null">
+            and b.vip = #{req.vip}
+        </if>
+        <if test="req.isDeleted !=null">
+            and b.is_deleted = #{req.isDeleted}
+        </if>
+    </sql>
+
+
+    <select id="getBigShotPage" parameterType="map" resultType="java.lang.Integer">
+
+        select b.id from pub_big_shot b
+        <where>
+
+            <if test="req.keyword!=null and req.keyword!=''">
+                and  (
+                b.name like concat('%',#{req.keyword},'%')
+                or b.nickname like concat('%',#{req.keyword},'%')
+                or b.alias like concat('%',#{req.keyword},'%')
+                )
+            </if>
+            <include refid="condition_query"/>
+        </where>
+        order by b.id desc
+    </select>
+
+
+    <select id="getPubSitePage" parameterType="map" resultType="java.lang.Integer">
+
+        select b.id from pub_site b
+        <where>
+
+            <if test="req.keyword!=null and req.keyword!=''">
+                and  (
+                b.name like concat('%',#{req.keyword},'%')
+                or b.ori_name like concat('%',#{req.keyword},'%')
+                or b.intro like concat('%',#{req.keyword},'%')
+                )
+            </if>
+            <include refid="condition_query"/>
+        </where>
+        order by b.id desc
+    </select>
+
+</mapper>

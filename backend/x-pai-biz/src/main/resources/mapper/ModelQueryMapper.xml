@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tigerobo.x.pai.dal.biz.mapper.ModelQueryMapper">
+
+
+
+    <sql id="condition_query">
+        day &gt;= #{req.startDay}
+        and day &lt;= #{req.endDay}
+        <if test="req.userId!=null and req.userId>0">
+            and user_id = #{req.userId}
+        </if>
+        <if test="req.modelId!=null and req.modelId.length>0">
+            and model_id = #{req.modelId}
+        </if>
+
+        <if test="req.callSource!=null">
+            and source = #{req.callSource}
+        </if>
+
+    </sql>
+
+    <select id="getSourceCallByDay" parameterType="map" resultType="com.tigerobo.x.pai.dal.biz.entity.eye.CallModelDayPo">
+        select day,sum(num) num from model_source_call
+        <where>
+            <include refid="condition_query"/>
+        </where>
+        group by day
+        order by day asc
+        limit 366
+    </select>
+
+    <select id="getSourceCallByModelName" parameterType="map"
+            resultType="com.tigerobo.x.pai.dal.biz.entity.eye.CallModelNamePo">
+
+        select model_id as modelId,type, sum(num) num
+        from model_source_call
+        <where>
+            <include refid="condition_query"/>
+            and type = 1
+        </where>
+        group by model_id
+        order by num desc
+        limit 300
+    </select>
+
+
+    <select id="getSourceModelCallByUser" parameterType="map"
+            resultType="com.tigerobo.x.pai.dal.biz.entity.eye.CallModelUserPo">
+
+        select user_id as userId, sum(num) num
+        from model_source_call
+        <where>
+            <include refid="condition_query"/>
+            and user_id > 0
+        </where>
+        group by user_id
+        order by num desc
+        limit 200
+    </select>
+
+</mapper>

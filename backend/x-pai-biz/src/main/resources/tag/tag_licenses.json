@@ -1,0 +1,30 @@
+[
+  {
+    "uid": "apache-2.0",
+    "text": "apache-2.0",
+    "textEn": "apache-2.0",
+    "icon": null,
+    "type": "LICENSES"
+  },
+  {
+    "uid": "mit",
+    "text": "mit",
+    "textEn": "mit",
+    "icon": null,
+    "type": "LICENSES"
+  },
+  {
+    "uid": "cc-by-4.0",
+    "text": "cc-by-4.0",
+    "textEn": "cc-by-4.0",
+    "icon": null,
+    "type": "LICENSES"
+  },
+  {
+    "uid": "licenses-others",
+    "text": "其他",
+    "textEn": "others",
+    "icon": null,
+    "type": "LICENSES"
+  }
+]

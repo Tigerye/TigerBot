@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tigerobo.x.pai.dal.biz.mapper.github.GithubMapper">
+    <select id="getRepoMaxThirdId" parameterType="map" resultType="java.lang.Integer">
+        select max(third_id) from github_repo
+    </select>
+    <select id="getUserMaxThirdId" parameterType="map" resultType="java.lang.Integer">
+        select max(third_id) from github_user
+    </select>
+
+    <select id="queryRepoIds" parameterType="map" resultType="java.lang.Integer">
+
+        select r.id
+        from github_repo_info r
+        left join github_user u on r.user_id = u.user_id
+        <where>
+            <if test="req.userId!=null">
+                r.user_id = #{req.userId}
+            </if>
+            <if test="req.followUserIds and req.followUserIds.size()>0">
+                and r.user_id in
+                <foreach collection="req.followUserIds" item="followUserId" separator="," open="(" close=")" index="index">
+                    #{followUserId}
+                </foreach>
+            </if>
+            <if test="req.aiTagList!=null and req.aiTagList.size()>0">
+                and
+                <foreach collection="req.aiTagList" item="aiTag" separator="or " open="(" close=")" index="index">
+                    r.ai_tag like concat('%"',#{aiTag},'"%')
+                </foreach>
+            </if>
+            <if test="req.keyword!=null and req.keyword.length>0">
+                and (r.repos_name like concat('%',#{req.keyword},'%') or u.user_name like concat('%',#{req.keyword},'%'))
+            </if>
+            and r.is_deleted = 0
+        </where>
+
+    </select>
+
+    <select id="adminQueryRepoIds" parameterType="map" resultType="java.lang.Integer">
+
+        select r.id
+        from github_repo_info r
+        left join github_user u on r.user_id = u.user_id
+        <where>
+            <if test="req.userId!=null">
+                r.user_id = #{req.userId}
+            </if>
+            <if test="req.userId!=null and req.userId>0">
+                and r.user_id = #{req.userId}
+            </if>
+            <if test="req.aiTag!=null and req.aiTag.length>0">
+                and r.ai_tag like concat('%"',#{req.aiTag},'"%')
+            </if>
+            <if test="req.keyword!=null and req.keyword.length>0">
+                and (r.repos_name like concat('%',#{req.keyword},'%') or u.user_name like concat('%',#{req.keyword},'%'))
+            </if>
+            <if test="req.isDeleted!=null">
+                and r.is_deleted = #{req.isDeleted}
+            </if>
+        </where>
+        order by r.id desc
+    </select>
+</mapper>

@@ -1,0 +1,205 @@
+[
+  {
+    "uid": "fill-mask",
+    "text": "Fill-Mask",
+    "textEn": "中文预训练模型",
+    "icon": null,
+    "type": "TASKS"
+  },
+  {
+    "uid": "question-answering",
+    "text": "问答",
+    "textEn": "Question Answering",
+    "icon": null,
+    "type": "TASKS",
+    "image": ["/image/default/问答.png","/image/default/问答-1.png"]
+  },
+  {
+    "uid": "table-question-answering",
+    "text": "基于表格的问答",
+    "textEn": "Table Question Answering",
+    "icon": null,
+    "type": "TASKS",
+    "image": ["/image/default/问答.png","/image/default/问答-1.png"]
+  },
+  {
+    "uid": "open-domain-question-answering",
+    "text": "开域问答",
+    "textEn": "Open Domain Question Answering",
+    "desc": "基于BERT中文预训练模型，添加span分类层，在QA数据集上做fine-tune.",
+    "icon": "https://x-pai.oss-cn-shanghai.aliyuncs.com/biz/tag/icon/tasks/问答.png",
+    "type": "TASKS",
+    "image": ["/image/default/问答.png","/image/default/问答-1.png"]
+  },
+  {
+    "uid": "text-classification",
+    "text": "文本分类",
+    "textEn": "Text Classification",
+    "desc": "基于BERT中文预训练模型，添加sequence分类层，在分类数据集上做fine-tune.",
+    "icon": "https://x-pai.oss-cn-shanghai.aliyuncs.com/biz/tag/icon/tasks/文本分类.png",
+    "type": "TASKS",
+    "image": ["/image/default/文本分类.png","/image/default/文本分类-1.png"]
+  },
+  {
+    "uid": "text-generation",
+    "text": "文本生成",
+    "textEn": "Text Generation",
+    "icon": null,
+    "type": "TASKS"
+  },
+  {
+    "uid": "text2text-generation",
+    "text": "文本转换",
+    "textEn": "Text2Text Generation",
+    "icon": null,
+    "type": "TASKS"
+  },
+  {
+    "uid": "token-classification",
+    "text": "词分类",
+    "textEn": "Token Classification",
+    "icon": null,
+    "type": "TASKS"
+  },
+  {
+    "uid": "zero-shot-classification",
+    "text": "零样本分类",
+    "textEn": "Zero-Shot Classification",
+    "icon": null,
+    "type": "TASKS"
+  },
+  {
+    "uid": "sentence-similarity",
+    "text": "句子相似度",
+    "textEn": "Sentence Similarity",
+    "icon": null,
+    "type": "TASKS"
+  },
+  {
+    "uid": "conversational",
+    "text": "会话",
+    "textEn": "Conversational",
+    "icon": null,
+    "type": "TASKS"
+  },
+  {
+    "uid": "feature-extraction",
+    "text": "特征提取",
+    "textEn": "Feature Extraction",
+    "icon": null,
+    "type": "TASKS"
+  },
+  {
+    "uid": "text-to-speech",
+    "text": "文本转语音",
+    "textEn": "Text-to-Speech",
+    "icon": null,
+    "type": "TASKS"
+  },
+  {
+    "uid": "automatic-speech-recognition",
+    "text": "自动语音识别",
+    "textEn": "Automatic Speech Recognition",
+    "icon": null,
+    "type": "TASKS"
+  },
+  {
+    "uid": "audio-source-separation",
+    "text": "音源分离",
+    "textEn": "Audio Source Separation",
+    "icon": null,
+    "type": "TASKS"
+  },
+  {
+    "uid": "audio-to-audio",
+    "text": "音频转换",
+    "textEn": "Audio-to-Audio",
+    "icon": null,
+    "type": "TASKS"
+  },
+  {
+    "uid": "voice-activity-detection",
+    "text": "语音活动检测",
+    "textEn": "Voice Activity Detection",
+    "icon": null,
+    "type": "TASKS"
+  },
+  {
+    "uid": "image-classification",
+    "text": "图像分类",
+    "textEn": "Image Classification",
+    "icon": null,
+    "type": "TASKS"
+  },
+  {
+    "uid": "object-detection",
+    "text": "目标检测",
+    "textEn": "Object Detection",
+    "icon": null,
+    "type": "TASKS"
+  },
+  {
+    "uid": "image-segmentation",
+    "text": "图片分割",
+    "textEn": "Image Segmentation",
+    "icon": null,
+    "type": "TASKS"
+  },
+  {
+    "uid": "named-entity-recognition",
+    "text": "命名实体识别",
+    "textEn": "Named Entity Recognition",
+    "desc": "基于BERT中文预训练模型，添加token 分类层，在实体识别数据集上做fine-tune.",
+    "icon": "https://x-pai.oss-cn-shanghai.aliyuncs.com/biz/tag/icon/tasks/命名实体识别.png",
+    "type": "TASKS",
+    "image": ["/image/default/命名实体识别.png","/image/default/命名实体识别-1.png"]
+  },
+  {
+    "uid": "sentiment-analysis",
+    "text": "情感分析",
+    "textEn": "Sentiment Analysis",
+    "desc": "基于BERT中文预训练模型，添加binary分类层，在情感分析数据集上做fine-tune.",
+    "icon": "https://x-pai.oss-cn-shanghai.aliyuncs.com/biz/tag/icon/tasks/情感分析.png",
+    "type": "TASKS",
+    "image": ["/image/default/情感分析.png","/image/default/情感分析-1.png"]
+  },
+  {
+    "uid": "machine-translation",
+    "text": "机器翻译",
+    "textEn": "Machine Translation",
+    "desc": "基于openNMT机器翻译框架，在翻译数据集上训练.",
+    "icon": "https://x-pai.oss-cn-shanghai.aliyuncs.com/biz/tag/icon/tasks/机器翻译.png",
+    "type": "TASKS",
+    "image": ["/image/default/机器翻译.png","/image/default/机器翻译-1.png"]
+  },
+  {
+    "uid": "text-summarization",
+    "text": "文本摘要",
+    "textEn": "Text Summarization",
+    "icon": null,
+    "type": "TASKS",
+    "image": ["/image/default/摘要.png","/image/default/摘要-1.png"]
+  },
+  {
+    "uid": "finance-word2vec",
+    "text": "金融领域词向量",
+    "textEn": "Finance Word2Vec",
+    "icon": null,
+    "type": "TASKS"
+  },
+  {
+    "uid": "pdf-parsing",
+    "text": "PDF解析",
+    "textEn": "PDF Parsing",
+    "icon": null,
+    "type": "TASKS",
+    "image": ["/image/default/pdf解析.png","/image/default/pdf解析-1.png"]
+  },
+  {
+    "uid": "tasks-others",
+    "text": "其他",
+    "textEn": "others",
+    "icon": null,
+    "type": "TASKS"
+  }
+]

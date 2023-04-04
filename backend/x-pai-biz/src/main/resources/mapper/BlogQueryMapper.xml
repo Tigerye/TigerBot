@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tigerobo.x.pai.dal.biz.mapper.blog.BlogQueryMapper">
+
+    <sql id="condition_query">
+        <if test="req.getId!=null and req.id>0">
+            and id = #{req.id}
+        </if>
+        <if test="req.startId !=null and req.startId>0">
+            and
+            id > #{req.startId}
+        </if>
+        <if test="req.userId!=null and req.userId>0">
+            and user_id = #{req.userId}
+        </if>
+        <if test="req.bigShotIdList!=null and req.bigShotIdList.size()>0">
+            and big_shot_id in
+            <foreach collection="req.bigShotIdList" item="bigShotId" index="index" open="(" close=")" separator=",">
+                #{bigShotId}
+            </foreach>
+        </if>
+        <if test="req.sourceFromList!=null and req.sourceFromList.size()>0">
+            and source_from in
+            <foreach collection="req.sourceFromList" item="sourceFrom" index="index" open="(" close=")" separator=",">
+                #{sourceFrom}
+            </foreach>
+        </if>
+
+
+        <if test="req.startPublishDate !=null">
+            and publish_time &gt;= #{req.startPublishDate}
+        </if>
+        <if test="req.endPublishDate !=null">
+            and publish_time &lt;= #{req.endPublishDate}
+        </if>
+
+        <if test="req.siteIdList!=null and req.siteIdList.size()>0">
+            and site_id in
+            <foreach collection="req.siteIdList" item="siteId" index="index" open="(" close=")" separator=",">
+                #{siteId}
+            </foreach>
+        </if>
+
+
+        <if test="req.vipList!=null and req.vipList.size()>0">
+            and vip in
+            <foreach collection="req.vipList" index="index" open="(" close=")" separator="," item="vip">
+                #{vip}
+            </foreach>
+        </if>
+        and online_status = 1
+        and is_deleted = 0
+        <if test="req.hasFollow">
+            and (
+            <if test="req.followSiteIds!=null and req.followSiteIds.size()>0">
+                site_id in
+                <foreach collection="req.followSiteIds" item="siteId" index="index" open="(" close=")" separator=",">
+                    #{siteId}
+                </foreach>
+            </if>
+            <if test="req.followUserIds!=null and req.followUserIds.size()>0">
+                <if test="req.followSiteIds!=null and req.followSiteIds.size()>0">
+                or
+                </if>
+                user_id in
+                <foreach collection="req.followUserIds" item="userId" index="index" open="(" close=")" separator=",">
+                    #{userId}
+                </foreach>
+            </if>
+            <if test="req.followBigShotIds!=null and req.followBigShotIds.size()>0">
+                <if test="(req.followSiteIds!=null and req.followSiteIds.size()>0) or (req.followUserIds!=null and req.followUserIds.size()>0)">
+                    or
+                </if>
+                big_shot_id in
+                <foreach collection="req.followBigShotIds" item="bigShotId" index="index" open="(" close=")" separator=",">
+                    #{bigShotId}
+                </foreach>
+            </if>
+            )
+        </if>
+
+        <if test="req.keyword!=null and req.keyword.length>0">
+            and (
+            title like concat('%',#{req.keyword},'%')
+            or translate_title like concat('%',#{req.keyword},'%')
+            or source_name like concat('%',#{req.keyword},'%')
+            or author_name like concat('%',#{req.keyword},'%')
+            )
+
+        </if>
+        <if test="req.categoryName!=null and req.categoryName.length>0" >
+            and category like concat('%',#{req.categoryName},'%')
+        </if>
+
+    </sql>
+
+    <sql id="condition_query_mine">
+        <if test="req.getId!=null and req.id>0">
+            and id = #{req.id}
+        </if>
+        and user_id = #{req.userId}
+
+        <if test="req.startPublishDate !=null">
+            and publish_time &gt;= #{req.startPublishDate}
+        </if>
+        <if test="req.endPublishDate !=null">
+            and publish_time &lt;= #{req.endPublishDate}
+        </if>
+        <if test="req.startCreateDate !=null">
+            and create_time &gt;= #{req.startCreateDate}
+        </if>
+        <if test="req.endCreateDate !=null">
+            and create_time &lt;= #{req.endCreateDate}
+        </if>
+        <if test="req.siteIdList!=null and req.siteIdList.size()>0">
+            and site_id in
+            <foreach collection="req.siteIdList" item="siteId" index="index" open="(" close=")" separator=",">
+                #{siteId}
+
+            </foreach>
+        </if>
+        <if test="req.sourceFromList!=null and req.sourceFromList.size()>0">
+            and source_from in
+            <foreach collection="req.sourceFromList" item="sourceFrom" index="index" open="(" close=")" separator=",">
+                #{sourceFrom}
+            </foreach>
+        </if>
+        <if test="req.onlineStatus!=null">
+            and online_status = #{req.onlineStatus}
+        </if>
+        and is_deleted = 0
+        <if test="req.keyword!=null and req.keyword.length>0">
+            and (
+            title like concat('%',#{req.keyword},'%')
+            or summary like concat('%',#{req.keyword},'%')
+            )
+        </if>
+    </sql>
+
+    <select id="query" parameterType="map" resultType="java.lang.Integer">
+
+        select id from blog_search
+        <where>
+            <include refid="condition_query"/>
+        </where>
+        order by publish_time desc,id desc
+    </select>
+
+
+    <select id="queryMine" parameterType="map" resultType="java.lang.Integer">
+        select id from blog_search
+        <where>
+            <include refid="condition_query_mine"/>
+        </where>
+        order by id desc
+    </select>
+
+
+    <select id="getMaxThirdId" parameterType="map" resultType="java.lang.Integer">
+        select max(third_id) from blog_crawler
+    </select>
+    <select id="getMaxId" parameterType="map" resultType="java.lang.Integer">
+        select max(id) from blog_search
+    </select>
+
+    <select id="getTwitterMaxThirdId" parameterType="map" resultType="java.lang.Integer">
+        select max(third_id) from blog_twitter_crawler
+    </select>
+
+    <select id="queryCategory" parameterType="map" resultType="java.lang.Integer">
+        select blog_id from blog_category_rel r left join blog_search b on r.blog_id = b.id
+        where
+        b.source_from = 1
+        and r.category_id = #{req.categoryId}
+
+        and online_status = 1
+        and is_deleted = 0
+        <if test="req.keyword!=null and req.keyword.length>0">
+            and (
+            title like concat('%',#{req.keyword},'%')
+            or translate_title like concat('%',#{req.keyword},'%')
+            or source_name like concat('%',#{req.keyword},'%')
+            or author_name like concat('%',#{req.keyword},'%')
+            )
+        </if>
+        order by publish_time desc,b.id desc
+    </select>
+</mapper>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tigerobo.x.pai.dal.biz.mapper.bill.BillQueryMapper">
+    <select id="getUserSumList" parameterType="map" resultType="com.tigerobo.x.pai.dal.biz.entity.bill.BillDayUserCallPo">
+        select user_id as userId,sum(num) as num
+        from bill_day_user_call
+        where
+        user_id in
+        <foreach collection="userIds" item="userId" separator="," open="(" close=")" index="index">
+            #{userId}
+        </foreach>
+        group by user_id
+    </select>
+
+</mapper>

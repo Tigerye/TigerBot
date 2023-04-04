@@ -1,0 +1,37 @@
+[
+  {
+    "uid": "text2label-text-classification",
+    "text": "文本分类",
+    "textEn": "Text Classification",
+    "icon": "tag/icon/style-1-文本分类.png",
+    "type": "STYLE"
+  },
+  {
+    "uid": "text2entity-ner",
+    "text": "实体识别",
+    "textEn": "Named Entity Recognition",
+    "icon": "tag/icon/style-2-实体识别.png",
+    "type": "STYLE"
+  },
+  {
+    "uid": "text2label-sentiment-analysis",
+    "text": "情感分析",
+    "textEn": "Sentiment Analysis",
+    "icon": "tag/icon/style-3-情感分析.png",
+    "type": "STYLE"
+  },
+  {
+    "uid": "text2text-translate",
+    "text": "翻译模型",
+    "textEn": "Machine Translate",
+    "icon": "tag/icon/style-4-翻译模型.png",
+    "type": "STYLE"
+  },
+  {
+    "uid": "text2text-qa",
+    "text": "问答模型",
+    "textEn": "Question Answer",
+    "icon": "tag/icon/style-5-问答模型.png",
+    "type": "STYLE"
+  }
+]

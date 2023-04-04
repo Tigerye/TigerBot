@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+
+    <groupId>com.tigerobo</groupId>
+    <artifactId>x-pai</artifactId>
+    <packaging>pom</packaging>
+    <version>1.2.2-SNAPSHOT</version>
+    <name>x-pai</name>
+    <description>Platform of Artificial Intelligence</description>
+
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.3.5.RELEASE</version>
+        <relativePath/>
+    </parent>
+
+    <properties>
+        <java.version>1.8</java.version>
+        <fastjson.version>1.2.75</fastjson.version>
+        <logback.version>1.2.9</logback.version>
+    </properties>
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.algolet.pay</groupId>
+                <artifactId>pay-biz</artifactId>
+                <version>1.0.3-SNAPSHOT</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>com.ctrip.framework.apollo</groupId>
+                        <artifactId>apollo-client</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+
+        </dependencies>
+    </dependencyManagement>
+
+<!--    <dependencies>-->
+<!--    </dependencies>-->
+
+    <modules>
+        <module>x-pai-api</module>
+        <module>x-pai-dal</module>
+        <module>x-pai-biz</module>
+        <module>x-pai-service</module>
+        <module>x-pai-engine</module>
+        <module>x-pai-serving</module>
+        <module>pai-common</module>
+        <module>pai-admin</module>
+    </modules>
+    <distributionManagement>
+        <repository>
+            <id>tigerye-release</id>
+            <name>Release Repository of Tigerye</name>
+            <url>http://maven.aigauss.com/repository/tigerye-release/</url>
+        </repository>
+        <snapshotRepository>
+            <id>tigerye-snapshot</id>
+            <name>Snapshot Repository of Tigerye</name>
+            <url>http://maven.aigauss.com/repository/tigerye-snapshot/</url>
+        </snapshotRepository>
+    </distributionManagement>
+<!--    <build>-->
+<!--        <plugins>-->
+<!--            <plugin>-->
+<!--                <groupId>org.apache.maven.plugins</groupId>-->
+<!--                <artifactId>maven-surefire-plugin</artifactId>-->
+<!--                <configuration>-->
+<!--                    <skipTests>true</skipTests>-->
+<!--                </configuration>-->
+<!--            </plugin>-->
+<!--            <plugin>-->
+<!--                <groupId>org.codehaus.mojo</groupId>-->
+<!--                <artifactId>versions-maven-plugin</artifactId>-->
+<!--                <version>2.3</version>-->
+<!--                <configuration>-->
+<!--                    <generateBackupPoms>false</generateBackupPoms>-->
+<!--                </configuration>-->
+<!--            </plugin>-->
+<!--        </plugins>-->
+<!--    </build>-->
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.6.0</version>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                    <encoding>UTF-8</encoding>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <!--                <version>3.0.0-M1</version>-->
+                <configuration>
+                    <skip>true</skip>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

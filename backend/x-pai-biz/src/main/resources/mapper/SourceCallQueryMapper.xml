@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tigerobo.x.pai.dal.biz.mapper.call.SourceCallQueryMapper">
+
+
+
+    <select id="getDayUserIds" parameterType="map" resultType="java.lang.Integer">
+
+        select user_id as userId from model_source_call
+        where day = #{day}
+        and type = 1
+        and source in (2,4)
+        group by user_id
+    </select>
+
+</mapper>
