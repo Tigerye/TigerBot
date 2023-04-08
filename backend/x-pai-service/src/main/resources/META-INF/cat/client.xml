@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-
-<config xmlns:xsi="http://www.w3.org/2001/XMLSchema" mode="client" xsi:noNamespaceSchemaLocation="config.xsd">
-    <domain id="xpai-biz"/>
-    <servers>
-        <server ip="10.0.8.174" port="2280" http-port="80"/>
-    </servers>
-</config>
